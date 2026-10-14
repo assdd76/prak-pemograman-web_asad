@@ -1,4 +1,4 @@
-/* reset */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -6,25 +6,26 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
+    font-family: Georgia, serif;
+    background-color: #1c1c1c;
+    color: #ddd;
     line-height: 1.6;
 }
 
 /* Header */
-body header {
-    background-color:white;
+body > header {
+    background-color: #111;
     padding: 20px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid #c9a227;
 }
 
-body header h1 {
+body > header h1 {
     max-width: 900px;
     margin: auto;
+    color: #c9a227;
 }
 
-/*navigation*/
+/* Navigation */
 nav {
     max-width: 900px;
     margin: auto;
@@ -37,15 +38,15 @@ nav ul {
 }
 
 nav a {
-    color: #333;
+    color: #ddd;
     text-decoration: none;
 }
 
 nav a:hover {
-    color: #0d6efd;
+    color: #c9a227;
 }
 
-/*main*/
+/* Main */
 main {
     max-width: 900px;
     margin: 30px auto;
@@ -53,47 +54,52 @@ main {
 }
 
 section {
-    background-color: white;
+    background-color: #262626;
     padding: 25px;
 }
 
-/* gambar */
+/* Gambar */
 main img {
     display: block;
     max-width: 100%;
     height: auto;
-    margin: 0 ;
+    margin: 0;
 }
 
-/* judul */
+/* Judul */
 h2 {
     margin-bottom: 15px;
+    color: #c9a227;
 }
 
 h3 {
     margin-bottom: 5px;
 }
 
-/* project */
-project {
-    margin-bottom: 30px;
+/* Project */
+#project {
+    margin-top: 30px;
 }
 
 article {
     padding: 15px 0;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #444;
+}
+
+article:hover {
+    background-color: #2e2e2e;
 }
 
 article:last-child {
     border-bottom: none;
 }
 
-/* from */
+/* Form */
 form {
     margin-top: 20px;
 }
 
-from p {
+form p {
     margin-bottom: 15px;
 }
 
@@ -108,8 +114,10 @@ select,
 textarea {
     width: 100%;
     padding: 9px;
-    border: 1px solid #ddd;
-    font-family: Arial, sans-serif
+    border: 1px solid #555;
+    background-color: #1c1c1c;
+    color: #ddd;
+    font-family: Georgia, serif;
 }
 
 textarea {
@@ -119,13 +127,13 @@ textarea {
 button {
     padding: 9px 15px;
     border: none;
-    background-color: #333;
-    color: white;   
+    background-color: #8b1a1a;
+    color: white;
     cursor: pointer;
 }
 
 button[type="reset"] {
-    background-color: #888;
+    background-color: #666;
 }
 
 button:hover {
@@ -137,15 +145,15 @@ aside {
     max-width: 900px;
     margin: 30px auto;
     padding: 20px;
-    background-color: white;
-    border-left: 3px solid #0d6efd;
+    background-color: #262626;
+    border-left: 3px solid #c9a227;
 }
 
 /* Footer */
 footer {
     padding: 20px;
     text-align: center;
-    color: #777;
+    color: #999;
     font-size: 14px;
 }
 
@@ -160,9 +168,11 @@ hr {
         flex-direction: column;
         gap: 8px;
     }
+
     main {
         margin-top: 20px;
     }
+
     main img {
         margin: 0 auto;
     }
