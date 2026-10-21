@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Portofolio Proyek - Modul 4</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, sans-serif; }
+        body { background-color: #070b16; color: #ece1c0; padding: 30px 15px; }
+        .container { max-width: 800px; margin: 0 auto; background: #0f1830; border-radius: 12px; padding: 25px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        h1 { color: #d4af37; font-size: 24px; margin-bottom: 5px; }
+        p.subtitle { color: #b9ae8c; margin-bottom: 20px; font-size: 14px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px; }
+        .stat-card { background: #12214a; border: 1px solid #8f7424; border-radius: 8px; padding: 15px; text-align: center; }
+        .stat-card h3 { font-size: 13px; color: #b9ae8c; text-transform: uppercase; margin-bottom: 5px; }
+        .stat-card p { font-size: 20px; font-weight: bold; color: #d4af37; }
+        .filter-group { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+        .btn-filter { padding: 8px 16px; border: 1px solid #8f7424; background: #0f1830; color: #ece1c0; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.2s; }
+        .btn-filter.active, .btn-filter:hover { background: #123a9c; color: #d4af37; border-color: #d4af37; }
+        .project-card { border: 1px solid #8f7424; border-radius: 8px; padding: 16px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; background: #0a1224; transition: transform 0.15s ease; }
+        .project-card:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .project-info h4 { font-size: 16px; color: #ece1c0; margin-bottom: 4px; }
+        .project-category { display: inline-block; font-size: 12px; color: #d4af37; background: #0a2366; padding: 2px 8px; border-radius: 4px; margin-bottom: 6px; font-weight: 600; }
+        .project-budget { font-size: 14px; color: #b9ae8c; font-weight: 600; }
+        .badge { padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .badge-success { background: #0f2316; color: #5fae6e; }
+        .badge-pending { background: #2e2508; color: #d4af37; }
+
+        /* Tambahan untuk Tugas Mandiri: form, pencarian, dan tombol aksi */
+        .project-form { background: #0a1224; border: 1px solid #8f7424; border-radius: 8px; padding: 15px; margin-bottom: 25px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; align-items: end; }
+        .form-group { display: flex; flex-direction: column; gap: 4px; }
+        .form-group label { font-size: 12px; color: #d4af37; font-weight: 600; }
+        .form-group input[type="text"], .form-group input[type="number"], .form-group select { padding: 8px 10px; border: 1px solid #8f7424; border-radius: 6px; font-size: 14px; background: #0f1830; color: #ece1c0; }
+        .form-check { flex-direction: row; align-items: center; gap: 8px; }
+        .btn-submit { padding: 9px 16px; background: #123a9c; color: #d4af37; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; }
+        .btn-submit:hover { background: #1a4bc4; }
+        .form-error { grid-column: 1 / -1; color: #ff7b7b; font-size: 13px; }
+        .search-input { width: 100%; padding: 10px 12px; border: 1px solid #8f7424; border-radius: 6px; font-size: 14px; margin-bottom: 15px; background: #0f1830; color: #ece1c0; }
+        .card-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+        .btn-action { padding: 5px 10px; border: 1px solid #8f7424; background: #0f1830; color: #ece1c0; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 500; }
+        .btn-toggle:hover { background: #123a9c; }
+        .btn-delete { color: #ff8a8a; border-color: #a31f1f; }
+        .btn-delete:hover { background: #2a0e0e; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Portofolio Proyek</h1>
+        <p class="subtitle">Modul 4: Pengolahan Logika Data & Interaktivitas DOM</p>
+
+        <!-- Kartu Ringkasan Statistik -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Proyek</h3>
+                <p id="stat-total-projects">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Anggaran</h3>
+                <p id="stat-total-budget">Rp 0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Selesai Dikerjakan</h3>
+                <p id="stat-completed-projects">0</p>
+            </div>
+        </div>
+
+        <!-- Fitur 1: Formulir Input Proyek Dinamis -->
+        <form id="project-form" class="project-form" novalidate>
+            <div class="form-group">
+                <label for="input-title">Judul Proyek</label>
+                <input type="text" id="input-title" placeholder="Masukkan judul proyek">
+            </div>
+            <div class="form-group">
+                <label for="input-category">Kategori</label>
+                <select id="input-category">
+                    <option value="Web App">Web App</option>
+                    <option value="Mobile App">Mobile App</option>
+                    <option value="Desktop App">Desktop App</option>
+                    <option value="UI/UX Design">UI/UX Design</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="input-budget">Estimasi Anggaran (Rp)</label>
+                <input type="number" id="input-budget" placeholder="0">
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" id="input-completed">
+                <label for="input-completed">Sudah Selesai</label>
+            </div>
+            <button type="submit" class="btn-submit">Tambah Proyek</button>
+            <p id="form-error" class="form-error"></p>
+        </form>
+
+        <!-- Fitur 2: Pencarian Real-Time -->
+        <input type="text" id="search-input" class="search-input" placeholder="Cari nama proyek...">
+
+        <!-- Tombol Filter Kategori -->
+        <div class="filter-group">
+            <button class="btn-filter active" data-category="Semua">Semua Proyek</button>
+            <button class="btn-filter" data-category="Web App">Web App</button>
+            <button class="btn-filter" data-category="Desktop App">Desktop App</button>
+            <button class="btn-filter" data-category="Mobile App">Mobile App</button>
+            <button class="btn-filter" data-category="UI/UX Design">UI/UX Design</button>
+        </div>
+
+        <!-- Kontainer Daftar Proyek -->
+        <div id="project-list"></div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
