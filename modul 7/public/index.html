@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Mahasiswa - CRUD Full-Stack</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Data Mahasiswa</h2>
+        <p class="subtitle">Aplikasi CRUD Full-Stack (Express + MySQL + JavaScript)</p>
+
+        <!-- Form tambah / ubah data -->
+        <form id="formMahasiswa" class="form-grid" autocomplete="off">
+            <input type="hidden" id="inputId">
+            <input type="text" id="inputNim" placeholder="NIM" required>
+            <input type="text" id="inputNama" placeholder="Nama lengkap" required>
+            <input type="text" id="inputJurusan" placeholder="Jurusan" required>
+            <input type="email" id="inputEmail" placeholder="Email" required>
+            <div class="form-actions">
+                <button type="submit" id="btnSubmit" class="btn-primary">Simpan Data</button>
+                <button type="button" id="btnCancel" class="btn-secondary" hidden>Batal</button>
+            </div>
+        </form>
+
+        <div id="statusMessage" class="status-msg">Memuat data...</div>
+
+        <!-- FITUR 3: Counter total mahasiswa -->
+        <p id="totalCounter" class="counter">Total Mahasiswa Terdaftar: 0 Orang</p>
+
+        <!-- FITUR 1: Kolom pencarian real-time -->
+        <input type="text" id="searchInput" class="search-input"
+               placeholder="Cari berdasarkan NIM, nama, jurusan, atau email...">
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>NIM</th>
+                        <th>Nama</th>
+                        <th>Jurusan</th>
+                        <th>Email</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

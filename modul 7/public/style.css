@@ -1,0 +1,66 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8fafc; color: #1e293b; padding: 40px 20px;
+    display: flex; justify-content: center;
+}
+.container {
+    background: #ffffff; width: 100%; max-width: 900px; padding: 24px;
+    border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+h2 { color: #4338ca; text-align: center; margin-bottom: 4px; font-size: 22px; }
+.subtitle { color: #64748b; text-align: center; font-size: 13px; margin-bottom: 20px; }
+
+/* Form */
+.form-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px; margin-bottom: 16px;
+}
+input[type="text"], input[type="email"] {
+    width: 100%; padding: 10px 12px; font-size: 14px; color: #1e293b;
+    border: 1px solid #cbd5e1; border-radius: 6px; background: #fff;
+}
+input:focus { outline: none; border-color: #4338ca; box-shadow: 0 0 0 3px rgba(67,56,202,0.15); }
+.form-actions { display: flex; gap: 8px; grid-column: 1 / -1; justify-content: flex-end; }
+
+/* Tombol */
+button {
+    border: none; padding: 10px 18px; border-radius: 6px; font-weight: bold;
+    cursor: pointer; font-size: 14px; transition: background-color 0.2s;
+}
+button.btn-primary { background-color: #4338ca; color: white; }
+button.btn-primary:hover { background-color: #3730a3; }
+button.btn-secondary { background-color: #e2e8f0; color: #334155; }
+button.btn-secondary:hover { background-color: #cbd5e1; }
+button:disabled { background-color: #94a3b8; cursor: not-allowed; }
+
+/* Status & counter */
+.status-msg {
+    text-align: center; font-size: 14px; color: #64748b; padding: 10px;
+    border-radius: 6px; background-color: #f1f5f9; margin-bottom: 14px;
+}
+.status-msg.error { background-color: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+.counter { font-size: 13px; color: #475569; margin-bottom: 8px; font-weight: 600; }
+
+/* Pencarian */
+.search-input { margin-bottom: 12px; }
+
+/* Tabel */
+.table-wrap { overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+thead { background-color: #eef2ff; }
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+th { color: #4338ca; font-size: 13px; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background-color: #f8fafc; }
+.empty-row { text-align: center; color: #94a3b8; padding: 20px; }
+
+/* Tombol aksi di tabel */
+.aksi { white-space: nowrap; }
+.aksi button { padding: 6px 12px; font-size: 12px; margin-right: 4px; color: #fff; }
+.btn-edit { background-color: #0284c7; }
+.btn-edit:hover { background-color: #0369a1; }
+.btn-delete { background-color: #dc2626; }
+.btn-delete:hover { background-color: #b91c1c; }
